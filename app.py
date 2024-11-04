@@ -3,11 +3,14 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from flasgger import Swagger, swag_from
 import atexit
 
+from query_scrapp import get_video_id
+
 app = Flask(__name__)
 swagger = Swagger(app)
 
 # Definindo as funções para as tarefas
-def tarefa_1():
+def tarefa_1(q):
+    get_video_id(q)
     print("Tarefa 1 executada")
 
 def tarefa_2():
@@ -20,7 +23,7 @@ def tarefa_3():
 scheduler = BackgroundScheduler()
 
 # Adicionando as tarefas para rodar a cada 1 minuto
-scheduler.add_job(func=tarefa_1, trigger="interval", minutes=1, id="tarefa_1")
+#scheduler.add_job(func=tarefa_1, trigger="interval", minutes=1, id="tarefa_1")
 scheduler.add_job(func=tarefa_2, trigger="interval", minutes=1, id="tarefa_2")
 scheduler.add_job(func=tarefa_3, trigger="interval", minutes=1, id="tarefa_3")
 
@@ -91,7 +94,7 @@ def executar_tarefa():
     tarefa = data['tarefa']
 
     if tarefa == "tarefa_1":
-        tarefa_1()
+        tarefa_1(data['url'])
     elif tarefa == "tarefa_2":
         tarefa_2()
     elif tarefa == "tarefa_3":

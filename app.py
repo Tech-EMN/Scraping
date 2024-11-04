@@ -9,8 +9,8 @@ app = Flask(__name__)
 swagger = Swagger(app)
 
 # Definindo as funções para as tarefas
-def tarefa_1(q):
-    get_video_id(q)
+def tarefa_1():
+    get_video_id()
     print("Tarefa 1 executada")
 
 def tarefa_2():

@@ -9,8 +9,8 @@ app = Flask(__name__)
 swagger = Swagger(app)
 
 # Definindo as funções para as tarefas
-def tarefa_1():
-    return get_video_id("https://www.youtube.com/watch?v=NFHDHcs4BvQ")
+def tarefa_1(u):
+    return get_video_id(u)
 
 def tarefa_2():
     print("Tarefa 2 executada")
@@ -93,8 +93,8 @@ def executar_tarefa():
     tarefa = data['tarefa']
 
     if tarefa == "tarefa_1":
-        return jsonify({"mensagem": f"vamm bora"
-                        "url": tarefa_1()}), 200
+        return jsonify({"mensagem": f"vamm bora",
+                        "url": tarefa_1(data['url'])}), 200
     elif tarefa == "tarefa_2":
         tarefa_2()
     elif tarefa == "tarefa_3":

@@ -4,6 +4,8 @@ from flasgger import Swagger, swag_from
 import atexit
 
 from query_scrapp import get_video_id
+from query_scrapp import get_transcript
+from query_scrapp import url
 
 app = Flask(__name__)
 swagger = Swagger(app)
@@ -12,8 +14,8 @@ swagger = Swagger(app)
 def tarefa_1(u):
     return get_video_id(u)
 
-def tarefa_2():
-    print("Tarefa 2 executada")
+def tarefa_2(c):
+    return get_transcript(c)
 
 def tarefa_3():
     print("Tarefa 3 executada")
@@ -93,10 +95,11 @@ def executar_tarefa():
     tarefa = data['tarefa']
 
     if tarefa == "tarefa_1":
+        Result_url = tarefa_1(data['url'])
         return jsonify({"mensagem": f"vamm bora",
-                        "url": tarefa_1(data['url'])}), 200
+                        "url": Result_url}), 200
     elif tarefa == "tarefa_2":
-        tarefa_2()
+       return jsonify({ "transcrição": tarefa_2(url)}), 200
     elif tarefa == "tarefa_3":
         tarefa_3()
     else:

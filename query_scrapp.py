@@ -1,4 +1,5 @@
 import re
+from app import Result_url
 # !pip install youtube_transcript_api
 from youtube_transcript_api import YouTubeTranscriptApi
 
@@ -38,6 +39,7 @@ def get_transcript(video_id):
 # url = r"https://www.youtube.com/watch?v=3KKQgJk7zn0"
 # url = r"https://www.youtube.com/watch?v=NFHDHcs4BvQ"
 
+url = Result_url
 
 try:
     result = get_transcript(get_video_id(url))

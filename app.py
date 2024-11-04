@@ -10,7 +10,7 @@ swagger = Swagger(app)
 
 # Definindo as funções para as tarefas
 def tarefa_1():
-    get_video_id()
+    get_video_id("https://www.youtube.com/watch?v=NFHDHcs4BvQ")
     print("Tarefa 1 executada")
 
 def tarefa_2():
@@ -94,7 +94,7 @@ def executar_tarefa():
     tarefa = data['tarefa']
 
     if tarefa == "tarefa_1":
-        tarefa_1(data['url'])
+        tarefa_1()
     elif tarefa == "tarefa_2":
         tarefa_2()
     elif tarefa == "tarefa_3":

@@ -13,7 +13,7 @@ swagger = Swagger(app)
 def tarefa_1(u):
     return get_video_id(u)
 
-def tarefa_2():
+def tarefa_2(n):
     return get_transcript(n)
 
 def tarefa_3():
@@ -24,8 +24,8 @@ scheduler = BackgroundScheduler()
 
 # Adicionando as tarefas para rodar a cada 1 minuto
 #scheduler.add_job(func=tarefa_1, trigger="interval", minutes=1, id="tarefa_1")
-scheduler.add_job(func=tarefa_2, trigger="interval", minutes=1, id="tarefa_2")
-scheduler.add_job(func=tarefa_3, trigger="interval", minutes=1, id="tarefa_3")
+#scheduler.add_job(func=tarefa_2, trigger="interval", minutes=1, id="tarefa_2")
+#scheduler.add_job(func=tarefa_3, trigger="interval", minutes=1, id="tarefa_3")
 
 # Iniciando o scheduler
 scheduler.start()
@@ -96,9 +96,10 @@ def executar_tarefa():
     if tarefa == "tarefa_1":
         Result_url = tarefa_1(data['url'])
         return jsonify({"mensagem": f"vamm bora",
-                        "url": Result_url}), 200
+                        "url": Result_url,
+                        "transcrição": tarefa_2(Result_url)}), 200
     elif tarefa == "tarefa_2":
-       return jsonify({ "transcrição": tarefa_2(Result_url)})
+        tarefa_2()
     elif tarefa == "tarefa_3":
         tarefa_3()
     else:

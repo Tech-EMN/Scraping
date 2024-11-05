@@ -1,3 +1,4 @@
 Flask
 APScheduler
 flasgger
+youtube_transcript_api
